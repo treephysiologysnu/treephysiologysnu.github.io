@@ -1,0 +1,6 @@
+User-agent: *
+ 
+Allow: /
+Disallow: /data/
+Disallow: /*.jpg$
+sitemap: http://phenocam.tk/data/sitemap.xml

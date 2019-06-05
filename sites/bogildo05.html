@@ -1,4 +1,8 @@
 
+
+
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -51,7 +55,7 @@
 		#navbar {
 			margin-top:40px;
 			float: left;
-			width:1028.350px;
+			width: 1028.350px;
 			background-color: #46494f;
 		}
 		#navbar ul {
@@ -111,6 +115,7 @@
 			padding-top: 5px;
 			padding-bottom: 20px;
 			margin: 0;
+			text-align: center;
 		}
 		.info_frame:hover {
 			opacity: 0.9;
@@ -126,11 +131,12 @@
 		}
 		#google_map {
 			position: relative;
-			margin-top:30px;
-			margin-bottom:0px;
+			margin-top:20px;
+			border-radius:5px;
+			box-shadow:3px 3px 3px 3px #999;
 		}
 		#map {
-			height: 1200px;
+			height: 380px;
 			width: 100%
 		}
 		.hist_image_frame {
@@ -145,11 +151,53 @@
 		.footer {
 			padding-left:0px;
 			margin:0px;
-			height: 62px;
+			height: 54px;
 			width: 1028px;
-			background-color: #e8e8ed;
+			background-color: #004bca63;
 			clear: both;
 			border-radius:5px;
+		}
+		.gallery_container {
+			width:100%;
+			padding-left:30px;
+			border:none;
+		}
+		div.gallery {
+			margin: 5px;
+			border: 1px solid #e8e8ed;
+			float: left;
+			width: 180px;
+		}
+
+		div.gallery:hover {
+			border: 1px solid #777;
+		}
+
+		div.gallery img {
+			width: 100%;
+			height: auto;
+		}
+
+		div.name {
+			padding: 15px;
+			padding-top: 0px;
+			font-family: 'Karla';
+			font-size: 16px;
+		}
+		.img_timelapse {
+			width: 490px;
+		}
+		.timelapse_container {
+			position:relative;
+			float: left;
+			top:30px;
+			margin-bottom:20px;
+		}
+		.timelapse_frame {
+			display:inline-block;
+		}
+		.timelapse_text {
+			text-align: center;
 		}
 	</style>
 
@@ -165,81 +213,77 @@
 		<div id="navbar">
 			<ul>
 				<li>
-					<a id="first" class="inactive" href="./index.html">About</a>
+					<a id="first" class="inactive" href="/index.html">About</a>
 				</li>
 				<li>
-					<a class="inactive" href="./gallery.html">Gallery</a>
+					<a class="active" href="/gallery.html">Gallery</a>
 				</li>
 				<li>
-					<a class="active" href="./map.html">Map</a>
+					<a class="inactive" href="/map.html">Map</a>
 				</li>
 				<li>
-					<a class="inactive" href="./data.html">Data</a>
+					<a class="inactive" href="/data.html">Data</a>
 				</li>
 			</ul>
 		</div><!-- /navbar -->
 		<!--콘텐츠부분-->
 	</div>
-	<div id = "google_map">
-		<div id="map"></div>
-		<script>
-			function initMap() {
-				var cpos = {lat:  35.869334, lng:  127.347939};
-				var map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 8,
-					center: cpos,
-					mapTypeId: 'satellite',
-					gestureHandling: 'greedy'
-				});
-				var icon = {
-					url: 'http://phenocam.tk/data/icon_cam.png',
-					scaledSize: new google.maps.Size(32, 32), // scaled size
-					origin: new google.maps.Point(0,0), // origin
-					anchor: new google.maps.Point(16,16) // anchor
-				}
-				var markers = [];
-				var locations = [
-					['bogildo01', 34.16067, 126.55474, '보길도(완도) 멀구슬나무', 'http://phenocam.tk/sites/bogildo01/'],
-					['bogildo02', 34.1604, 126.55436, '보길도(완도) 아왜나무', 'http://phenocam.tk/sites/bogildo02/'],
-					['bogildo03', 34.16042, 126.55444, '보길도(완도) 후박나무', 'http://phenocam.tk/sites/bogildo03/'],
-					['bogildo05', 34.16063, 126.55478, '보길도(완도) 삼나무', 'http://phenocam.tk/sites/bogildo05/'],
-					['bogildo06', 34.16044, 126.55453, '보길도(완도) 구실잣밤나무', 'http://phenocam.tk/sites/bogildo06/'],
-					['bogildo07', 34.16035, 126.55458, '보길도(완도) 참식나무', 'http://phenocam.tk/sites/bogildo07/'],
-					['bogildo08', 34.16065, 126.55469, '보길도(완도) 예덕나무', 'http://phenocam.tk/sites/bogildo08/'],
-					['bogildo09', 34.16048, 126.55495, '보길도(완도) 황칠나무', 'http://phenocam.tk/sites/bogildo09/'],
-					['bogildo10', 34.16029, 126.55470, '보길도(완도) 동백나무', 'http://phenocam.tk/sites/bogildo10/'],
-					['bogildo11', 34.16031, 126.55454, '보길도(완도) 생달나무', 'http://phenocam.tk/sites/bogildo11/'],
-					['chilbosan01', 37.265542, 126.940473, '칠보산(수원) 산딸나무, 공작단풍', 'http://phenocam.tk/sites/chilbosan01/'],
-					['chilbosan02', 37.265770, 126.940325, '칠보산(수원) 수수꽃다리', 'http://phenocam.tk/sites/chilbosan02/'],
-					['chilbosan03', 37.265740, 126.940295, '칠보산(수원) 목련나무, 겹벛나무', 'http://phenocam.tk/sites/chilbosan03/'],
-					['chilbosan04', 37.265512, 126.940443, '칠보산(수원) 산수유나무', 'http://phenocam.tk/sites/chilbosan04/'],
-					['daegu01', 35.902173, 128.8469093, '대구대학교(경산)', 'http://phenocam.tk/webcam/gallery']
-				];
-				for (var i = 0; i < locations.length; i++) {
-					(function(n) {
-						var location = locations[n]
+	<div class="content">
+		<div class = "lat_image_frame">
+			<h2>bogildo05</h2>
+			<img src="http://phenocam.ml/data/bogildo05/2019/06/bogildo05_2019_06_05_170002.jpg" alt=" bogildo05" style="width:533px; height:433px;position:relative;margin-left: 10px;margin-right: 10px"/>
+		</div>
+		<div class="hist_image_frame">
+			<img src="http://phenocam.ml/data/bogildo05/2019/06/bogildo05_2019_06_05_150001.jpg" style="width:133px"/>
+			<img src="http://phenocam.ml/data/bogildo05/2019/06/bogildo05_2019_06_05_140002.jpg" style="width:133px"/>
+			<img src="http://phenocam.ml/data/bogildo05/2019/06/bogildo05_2019_06_05_130002.jpg" style="width:133px"/>
+			<img src="http://phenocam.ml/data/bogildo05/2019/06/bogildo05_2019_06_05_120002.jpg" style="width:133px"/>
+		</div>
+		<div class="timelapse_container">
+			<div class="timelapse_frame">
+				<p class="timelapse_text"> <strong> History <br /> Time-Lapse Movie </strong> </p>
+				<img class="img_timelapse" src="">
+			</div>
+			<div class="timelapse_frame">
+				<p class="timelapse_text"> <strong> Latest 24 Hours <br /> Time-Lapse Movie </strong>  </p>
+				<img class="img_timelapse" src="">
+			</div>
+		</div>
+		<div class="info_frame">
+			<dl class="site_info">
+				<dt id="info"><h3>Site Information</h3></dt>
+				<dt class="site">Location:  Wando. Bogil-myeon</dt>
+				<dt class="site">Start date:  2018-09-18</dt>
+				<dt class="site">Tree species:  Cryptomeria japonica</dt>
+				<dt class="site">Coordinates:  34.16063, 126.55478</dt>
+				<dt class="site">Camera:  Raspberry Pi Camera V2</dt>
+			</dl>
+			<div id = "google_map">
+				<div id="map"></div>
+				<script>
+					function initMap() {
+						var pos = {lat:  37.265542, lng:  126.940473};
+						var map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 17,
+							center: pos,
+							mapTypeId: 'satellite'
+						});
 						var marker = new google.maps.Marker({
-							position: {
-								lat: location[1],
-								lng: location[2]
-							},
-							map: map,
-							html: location[0],
-							url: location[4],
-							title : location[3],
+							position: pos,
+							map: map
 						});
-						google.maps.event.addListener(marker, "click", function() {
-							window.location.href = location[4];
-						});
-					})(i);
-				}
-			}
-		</script>
-		<script async defer
-				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WQ7VmgXTXEZCVeB7K7Nbc0ChsPmwOUw&callback=initMap&language=en">
-		</script>
+					}
+				</script>
+				<script async defer
+						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WQ7VmgXTXEZCVeB7K7Nbc0ChsPmwOUw&callback=initMap&language=en">
+				</script>
+			</div>
+		</div>
+		<div class="graph">
+			<h4>Timeseries Plot</h4>
+			<iframe classe="graph" src="http://phenocam.ml/data/timeseries/bogildo05.html" style="width: 980px;height:370px;"></iframe>
+		</div>
 	</div>
-
 	<div class="footer">
 		<img src="http://phenocam.ml/logo.png" align="top" style="width:270px; height:54px; float:left">
 		<p style="text-align:left; font-size:0.7em; width:100%; margin-top:0px; margin-bottom:0px">
@@ -249,6 +293,5 @@
 		</p>
 	</div>
 </div>
-
 </body>
 </html>
