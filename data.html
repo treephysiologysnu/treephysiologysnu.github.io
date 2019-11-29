@@ -158,7 +158,22 @@
 			margin-right: 30px;
 		}
 	</style>
+	<script>
+		var opt = document.getElementById("id_site");
+		var link = "http://phenocam.ml/data/" + opt + ".zip";
 
+		function data_download() {
+			fetch(link).then(function(t) {
+				return t.blob().then((b)=>{
+							var a = document.createElement("a");
+							a.href = URL.createObjectURL(b);
+							a.setAttribute("download", opt + ".zip");
+							a.click();
+						}
+				);
+			});
+		}
+	</script>
 </head>
 <body>
 <div class="container">
@@ -226,15 +241,12 @@
 			<option value="cbnuf_nursery02">cbnuf_nursery02</option>
 
 </select></td></tr>
-<tr><th><label for="id_start_date">Start Date:</label></th><td><input type="text" name="start_date" required id="id_start_date" /></td></tr>
-<tr><th><label for="id_end_date">End Date:</label></th><td><input type="text" name="end_date" required id="id_end_date" /></td></tr>
-<tr><th><label for="id_start_time">Start Time of Day:</label></th><td><input type="text" name="start_time" required id="id_start_time" /></td></tr>
-<tr><th><label for="id_end_time">End Time of Day:</label></th><td><input type="text" name="end_time" required id="id_end_time" /></td></tr>
-<tr><th><label for="id_ir_flag">IR Images:</label></th><td><input type="checkbox" name="ir_flag" id="id_ir_flag" /></td></tr>
+<tr><th><label for="id_start_date">Start Date:</label></th><td><input type="text" name="start_date" required id="id_start_date" placeholder="YYYYMMDD"/></td></tr>
+<tr><th><label for="id_end_date">End Date:</label></th><td><input type="text" name="end_date" required id="id_end_date" placeholder="YYYYMMDD"/></td></tr>
       <tr>
         <td></td>
         <td>
-          <button type="submit" class="btn btn-primary js-download-submit">
+          <button type="submit" class="btn-data-download" onclick="data_download()">
             Submit
           </button>
         </td>
