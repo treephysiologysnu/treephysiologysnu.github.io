@@ -1,0 +1,50 @@
+  <html>
+  <head>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
+    <style>
+      #series {position: fixed; left: 25%;
+      }
+      #bod {
+      font-family: 'Open Sans', sans-serif;
+      }
+    </style>
+  </head>
+  <body id="bod">
+
+    <div id="graphdiv2" style="width:100%;"></div>
+      <script type="text/javascript">
+      g = new Dygraph(
+        document.getElementById("graphdiv2"),
+        "results/bogildo01.csv",
+        {
+          ylabel: 'Chromatic coordinate',
+          colors: ["green", "red", "blue", "black"],
+          visibility: [true, true, true, true]
+        }
+        );
+
+    function setStatus() {
+          document.getElementById("visibility").innerHTML =
+            g.visibility().toString();
+        }
+
+          function change(el) {
+            g.setVisibility(parseInt(el.id), el.checked);
+            setStatus();
+          }
+
+      </script>
+      <div id="series">
+      <p><b>Show Series:</b>
+        <input type=checkbox id="0" checked onClick="change(this)">
+        <label for="0"> Rcc</label>
+        <input type=checkbox id="1" checked onClick="change(this)">
+        <label for="1"> Gcc</label>
+        <input type=checkbox id="2" checked onClick="change(this)">
+        <label for="2"> Bcc</label>
+        <!--<input type=checkbox id="3" checked onClick="change(this)">
+        <label for="3"> Gcc.filtered</label>-->
+      </p></div>
+
+  </body>
+</html>
